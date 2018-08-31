@@ -1,0 +1,29 @@
+{
+    "name": "wol-soft/twig-include-dir",
+    "description": "Include all twig templates within a directory",
+    "type": "library",
+    "require": {
+        "twig/twig": "^2.0.0",
+        "php": ">=7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "TwigIncludeDir\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TwigIncludeDir\\Tests\\": "tests"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.1"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "enno",
+            "email": "enno@wol-soft.de"
+        }
+    ]
+}
