@@ -4,7 +4,9 @@ namespace TwigIncludeDir\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Twig_Environment;
+use Twig_Error_Loader;
 use Twig_Error_Runtime;
+use Twig_Loader_Array;
 use Twig_Loader_Filesystem;
 use TwigIncludeDir\IncludeDirTokenParser;
 
@@ -69,5 +71,28 @@ class IncludeDirTest extends TestCase
         $this->expectException(Twig_Error_Runtime::class);
         $this->expectExceptionMessage('Variable "c" does not exist.');
         $this->twig->render('/templates/includeDirVariableScopeRecursive.twig');
+    }
+
+    public function testIncludeDirInvalidDirectory()
+    {
+        $this->expectException(Twig_Error_Loader::class);
+        $this->expectExceptionMessage(
+            'Unable to find template "/templates/myFictiveDirectory" (looked into: ' . __DIR__ .
+            ') in "/templates/includeDirInvalidDirectory.twig".'
+        );
+        $this->twig->render('/templates/includeDirInvalidDirectory.twig');
+    }
+
+    public function testIncludeDirInvalidLoader()
+    {
+        $this->expectException(Twig_Error_Loader::class);
+        $this->expectExceptionMessage('IncludeDir is only supported for filesystem loader!');
+
+        $loader = new Twig_Loader_Array([
+            'template' => file_get_contents(__DIR__ . '/templates/includeDir.twig')
+        ]);
+        $twig = new Twig_Environment($loader, ['strict_variables' => true]);
+        $twig->addTokenParser(new IncludeDirTokenParser());
+        $twig->render('template');
     }
 }
