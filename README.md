@@ -1,3 +1,8 @@
+[![Latest Version](https://img.shields.io/packagist/v/wol-soft/twig-include-dir.svg)](https://packagist.org/packages/wol-soft/twig-include-dir)
+[![Build Status](https://travis-ci.org/wol-soft/twig-include-dir.svg?branch=master)](https://travis-ci.org/wol-soft/twig-include-dir)
+[![Coverage Status](https://coveralls.io/repos/github/wol-soft/twig-include-dir/badge.svg?branch=master)](https://coveralls.io/github/wol-soft/twig-include-dir?branch=master)
+[![MIT License](https://img.shields.io/packagist/l/wol-soft/twig-include-dir.svg)](https://github.com/wol-soft/twig-include-dir/blob/master/LICENSE)
+
 # twig-include-dir
 Include all twig templates within a directory
 
@@ -60,7 +65,7 @@ To include all files within a given directory recursive simply add the keyword *
 
 Now also the modals from the directories */modals/user* and */modals/system* etc. will be included.
 
-<font color="red">Caution:</font> The templates will be included alphabetically as well, including the directories. Thus the template */modals/footer.twig* will be included before the templates from the directory */modals/system* followed by */modals/user* followed by a possible */modals/zebraHeader.twig*. It is recommended to use twig-include-dir only for templates which do __not__ require a specific order.
+__Caution:__ The templates will be included alphabetically as well, including the directories. Thus the template */modals/footer.twig* will be included before the templates from the directory */modals/system* followed by */modals/user* followed by a possible */modals/zebraHeader.twig*. It is recommended to use twig-include-dir only for templates which do __not__ require a specific order.
 
 ### Variables
 
