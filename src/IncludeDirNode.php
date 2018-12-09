@@ -85,6 +85,8 @@ class IncludeDirNode extends Twig_Node implements Twig_NodeOutputInterface
             $files = glob($includePath . '/*.twig');
         }
 
+        sort($files);
+
         foreach ($files as $file) {
             $file = str_replace(DIRECTORY_SEPARATOR, '/', str_replace($loaderPath, '', $file));
             $template = new Twig_Node_Include(
