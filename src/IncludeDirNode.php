@@ -6,28 +6,29 @@ use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use RecursiveRegexIterator;
 use RegexIterator;
-use Twig_Compiler;
-use Twig_Error_Loader;
-use Twig_Loader_Filesystem;
-use Twig_Node;
-use Twig_Node_Expression;
-use Twig_Node_Expression_Constant;
-use Twig_Node_Include;
-use Twig_NodeOutputInterface;
+use Twig\Compiler;
+use Twig\Error\LoaderError;
+use Twig\Loader\FilesystemLoader;
+use Twig\Node\Expression\AbstractExpression;
+use Twig\Node\Expression\ConstantExpression;
+use Twig\Node\IncludeNode;
+use Twig\Node\Node;
+use Twig\Node\NodeOutputInterface;
 
 /**
  * Class IncludeDirNode
  *
  * @package TwigIncludeDir
  */
-class IncludeDirNode extends Twig_Node implements Twig_NodeOutputInterface
+class IncludeDirNode extends Node implements NodeOutputInterface
 {
     public function __construct(
-        Twig_Node_Expression $expr,
-        Twig_Node_Expression $variables = null,
-        $recursive = false,
-        $only = false,
-        $lineno, $tag = null
+        AbstractExpression $expr,
+        AbstractExpression $variables = null,
+        bool $recursive = false,
+        bool $only = false,
+        int $lineno = 0,
+        string $tag = ''
     ) {
         $nodes = ['expr' => $expr];
         if (null !== $variables) {
@@ -37,20 +38,25 @@ class IncludeDirNode extends Twig_Node implements Twig_NodeOutputInterface
         parent::__construct(
             $nodes,
             [
-                'recursive' => (bool) $recursive,
-                'only' => (bool) $only
+                'recursive' => $recursive,
+                'only' => $only
             ],
             $lineno,
             $tag
         );
     }
 
-    public function compile(Twig_Compiler $compiler)
+    /**
+     * @param Compiler $compiler
+     *
+     * @throws LoaderError
+     */
+    public function compile(Compiler $compiler): void
     {
         $loader = $compiler->getEnvironment()->getLoader();
 
-        if (!$loader instanceof Twig_Loader_Filesystem) {
-            throw new Twig_Error_Loader('IncludeDir is only supported for filesystem loader!');
+        if (!$loader instanceof FilesystemLoader) {
+            throw new LoaderError('IncludeDir is only supported for filesystem loader!');
         }
 
         $includePath = '';
@@ -63,7 +69,7 @@ class IncludeDirNode extends Twig_Node implements Twig_NodeOutputInterface
         }
 
         if (empty($includePath)) {
-            throw new Twig_Error_Loader(
+            throw new LoaderError(
                 sprintf(
                     'Unable to find template "%s" (looked into: %s).',
                     $this->getNode('expr')->getAttribute('value'),
@@ -89,8 +95,8 @@ class IncludeDirNode extends Twig_Node implements Twig_NodeOutputInterface
 
         foreach ($files as $file) {
             $file = str_replace(DIRECTORY_SEPARATOR, '/', str_replace($loaderPath, '', $file));
-            $template = new Twig_Node_Include(
-                new Twig_Node_Expression_Constant($file, $this->lineno),
+            $template = new IncludeNode(
+                new ConstantExpression($file, $this->lineno),
                 $this->hasNode('variables') ? $this->getNode('variables') : null,
                 $this->getAttribute('only'),
                 false,

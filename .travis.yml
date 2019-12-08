@@ -8,6 +8,10 @@ php:
   - 7.3
   - 7.4
 
+env:
+  - TWIG_VERSION="2.*"
+  - TWIG_VERSION="3.*"
+
 install:
   # Install coveralls.phar
   - wget -c -nc --retry-connrefused --tries=0 https://github.com/php-coveralls/php-coveralls/releases/download/v2.0.0/php-coveralls.phar -O coveralls.phar
@@ -17,6 +21,7 @@ install:
 before_script:
   - composer self-update || true
   - composer install
+  - composer require twig/twig:${TWIG_VERSION}
   - mkdir -p build/logs
 
 script:

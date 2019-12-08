@@ -2,28 +2,28 @@
 
 namespace TwigIncludeDir;
 
-use Twig_Error_Syntax;
-use Twig_Node;
-use Twig_Token;
-use Twig_TokenParser;
+use Twig\Error\SyntaxError;
+use Twig\Node\Node;
+use Twig\Token;
+use Twig\TokenParser\AbstractTokenParser;
 
 /**
  * Class IncludeDirTokenParser
  *
  * @package TwigIncludeDir
  */
-class IncludeDirTokenParser extends Twig_TokenParser
+class IncludeDirTokenParser extends AbstractTokenParser
 {
     /**
      * Parses a token and returns a node.
      *
-     * @param Twig_Token $token
+     * @param Token $token
      *
-     * @return Twig_Node A Twig_Node instance
+     * @return Node
      *
-     * @throws Twig_Error_Syntax
+     * @throws SyntaxError
      */
-    public function parse(Twig_Token $token)
+    public function parse(Token $token): Node
     {
         $expr = $this->parser->getExpressionParser()->parseExpression();
 
@@ -39,26 +39,31 @@ class IncludeDirTokenParser extends Twig_TokenParser
         );
     }
 
+    /**
+     * @return array
+     *
+     * @throws SyntaxError
+     */
     protected function parseArguments()
     {
         $stream = $this->parser->getStream();
 
         $recursive = false;
-        if ($stream->nextIf(Twig_Token::NAME_TYPE, 'recursive')) {
+        if ($stream->nextIf(Token::NAME_TYPE, 'recursive')) {
             $recursive = true;
         }
 
         $variables = null;
-        if ($stream->nextIf(Twig_Token::NAME_TYPE, 'with')) {
+        if ($stream->nextIf(Token::NAME_TYPE, 'with')) {
             $variables = $this->parser->getExpressionParser()->parseExpression();
         }
 
         $only = false;
-        if ($stream->nextIf(Twig_Token::NAME_TYPE, 'only')) {
+        if ($stream->nextIf(Token::NAME_TYPE, 'only')) {
             $only = true;
         }
 
-        $stream->expect(Twig_Token::BLOCK_END_TYPE);
+        $stream->expect(Token::BLOCK_END_TYPE);
 
         return array($recursive, $variables, $only);
     }
