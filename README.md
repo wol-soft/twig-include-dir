@@ -14,7 +14,8 @@ Include all twig templates within a directory
 
 ## Requirements ##
 
-- Requires Twig 2.x
+- Requires Twig > 2.7
+- Requires PHP > 7.2.9
 
 ## Installation ##
 
@@ -36,8 +37,8 @@ To use twig-include-dir you need to add the include-dir token parser to your Twi
 
 /* ... */
 
-$loader = new Twig_Loader_Filesystem(__DIR__ . DIRECTORY_SEPARATOR);
-$twig = new Twig_Environment($loader);
+$loader = new FilesystemLoader(__DIR__ . DIRECTORY_SEPARATOR);
+$twig = new Environment($loader);
 $twig->addTokenParser(new \TwigIncludeDir\IncludeDirTokenParser());
 
 /* ... */
