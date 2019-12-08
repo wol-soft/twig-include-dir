@@ -3,7 +3,7 @@
     "description": "Include all twig templates within a directory",
     "type": "library",
     "require": {
-        "php": "^7.1",
+        "php": "^7.2.9",
         "twig/twig": ">= 2.7 < 4.0"
     },
     "autoload": {
