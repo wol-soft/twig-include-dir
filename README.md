@@ -1,5 +1,5 @@
 [![Latest Version](https://img.shields.io/packagist/v/wol-soft/twig-include-dir.svg)](https://packagist.org/packages/wol-soft/twig-include-dir)
-[![Build Status](https://travis-ci.org/wol-soft/twig-include-dir.svg?branch=master)](https://travis-ci.org/wol-soft/twig-include-dir)
+[![Build Status](https://travis-ci.com/wol-soft/twig-include-dir.svg?branch=master)](https://travis-ci.com/wol-soft/twig-include-dir)
 [![Coverage Status](https://coveralls.io/repos/github/wol-soft/twig-include-dir/badge.svg?branch=master)](https://coveralls.io/github/wol-soft/twig-include-dir?branch=master)
 [![MIT License](https://img.shields.io/packagist/l/wol-soft/twig-include-dir.svg)](https://github.com/wol-soft/twig-include-dir/blob/master/LICENSE)
 
