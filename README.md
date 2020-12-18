@@ -14,8 +14,8 @@ Include all twig templates within a directory
 
 ## Requirements ##
 
-- Requires Twig > 2.7
-- Requires PHP > 7.2.9
+- Requires Twig >= 2.7
+- Requires PHP >= 7.2
 
 ## Installation ##
 
