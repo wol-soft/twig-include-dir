@@ -1,5 +1,6 @@
 [![Latest Version](https://img.shields.io/packagist/v/wol-soft/twig-include-dir.svg)](https://packagist.org/packages/wol-soft/twig-include-dir)
-[![Build Status](https://travis-ci.com/wol-soft/twig-include-dir.svg?branch=master)](https://travis-ci.com/wol-soft/twig-include-dir)
+[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.2-8892BF.svg)](https://php.net/)
+[![Build Status](https://github.com/wol-soft/twig-include-dir/actions/workflows/main.yml/badge.svg)](https://github.com/wol-soft/twig-include-dir/actions/workflows/main.yml)
 [![Coverage Status](https://coveralls.io/repos/github/wol-soft/twig-include-dir/badge.svg?branch=master)](https://coveralls.io/github/wol-soft/twig-include-dir?branch=master)
 [![MIT License](https://img.shields.io/packagist/l/wol-soft/twig-include-dir.svg)](https://github.com/wol-soft/twig-include-dir/blob/master/LICENSE)
 
