@@ -57,21 +57,21 @@ class IncludeDirTest extends TestCase
     public function testIncludeDirVariableScopeMissingVariable(): void
     {
         $this->expectException(RuntimeError::class);
-        $this->expectExceptionMessage('Variable "b" does not exist.');
+        $this->expectExceptionMessage('Variable "b" does not exist');
         $this->twig->render('/templates/includeDirVariableScopeMissingVariable.twig');
     }
 
     public function testIncludeDirVariableScopeOnlyMissingVariable(): void
     {
         $this->expectException(RuntimeError::class);
-        $this->expectExceptionMessage('Variable "b" does not exist.');
+        $this->expectExceptionMessage('Variable "b" does not exist');
         $this->twig->render('/templates/includeDirVariableScopeOnlyMissingVariable.twig');
     }
 
     public function testIncludeDirVariableScopeRecursiveMissingVariable(): void
     {
         $this->expectException(RuntimeError::class);
-        $this->expectExceptionMessage('Variable "c" does not exist.');
+        $this->expectExceptionMessage('Variable "c" does not exist');
         $this->twig->render('/templates/includeDirVariableScopeRecursive.twig');
     }
 
