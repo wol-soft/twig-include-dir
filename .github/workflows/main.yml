@@ -24,8 +24,8 @@ jobs:
       - name: Install dependencies
         run: |
           composer self-update || true
-          composer install
-          composer require twig/twig:${{ matrix.twig }}
+          composer require --no-update twig/twig:${{ matrix.twig }}
+          composer update
 
       - name: Prepare codeclimate test reporter
         if: ${{ matrix.php == '8.0' }}
