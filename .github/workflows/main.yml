@@ -11,6 +11,9 @@ jobs:
         twig: ['2.*', '3.*']
 
     name: PHP ${{ matrix.php }} tests (TWIG ${{ matrix.twig }})
+    # every Twig 2 release has security advisories which Composer blocks by default; the supported range must stay installable
+    env:
+      COMPOSER_NO_BLOCKING: 1
     steps:
       - name: Checkout
         uses: actions/checkout@v3
