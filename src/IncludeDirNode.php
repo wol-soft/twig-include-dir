@@ -26,7 +26,7 @@ class IncludeDirNode extends Node implements NodeOutputInterface
 {
     public function __construct(
         AbstractExpression $expr,
-        AbstractExpression $variables = null,
+        ?AbstractExpression $variables = null,
         bool $recursive = false,
         bool $only = false,
         int $lineno = 0,
